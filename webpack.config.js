@@ -1,14 +1,29 @@
 let path = require('path');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let conf = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, './dist/'),
         filename: '[name].js',
-        publicPath: 'dist/'
+        publicPath: ''  // 'dist/'
     },
     plugins: [
+        new CleanWebpackPlugin(),
+        new HTMLWebpackPlugin({
+            template: './src/index.html'
+          }),
+          new CopyWebpackPlugin({
+            patterns: [
+              {
+                from: path.resolve(__dirname, 'src/favicon.ico'),
+                to: path.resolve(__dirname, 'dist')
+              }            
+            ]
+          }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
