@@ -1,4 +1,5 @@
-let mainServerUrl = 'http://localhost:3000';
+//let mainServerUrl = 'http://localhost:3000';
+let mainServerUrl = 'https://react-biblioteka.herokuapp.com';
 
 async function makeRequest(url, options = {}, baseUrl = mainServerUrl){
     try{
